@@ -9,30 +9,60 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 50px;
+            padding: 50px 20px;
         }
-        a {
+        .countdown {
+            font-size: 48px;
+            font-weight: bold;
             color: #ff9900;
+            margin: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #ff9900;
+            color: black;
+            font-size: 24px;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h2>⏳ Redirecting you to OpenClaw Blaster...</h2>
-    <p>Please wait, you will be redirected in a moment.</p>
-    <p><small>If nothing happens, <a href="https://warriorplus.com/o2/a/g7r106k/0">click here</a>.</small></p>
+    <h1>⏳ Redirecting to OpenClaw Blaster...</h1>
+    <div class="countdown" id="countdown">3</div>
+    <p>You will be redirected automatically.</p>
+    
+    <a href="https://warriorplus.com/o2/a/g7r106k/0" class="button">
+        🔓 CLICK HERE NOW
+    </a>
 
-    <!-- MULTIPLE REDIRECT METHODS FOR MAXIMUM COMPATIBILITY -->
     <script>
-        // Method 1: Standard redirect
-        window.location.href = "https://warriorplus.com/o2/a/g7r106k/0";
+        // Sanfter Countdown + Redirect (Chrome-freundlich)
+        var seconds = 3;
+        var countdownEl = document.getElementById('countdown');
+        
+        var interval = setInterval(function() {
+            seconds--;
+            countdownEl.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(interval);
+                // Diese Methode akzeptiert Chrome besser
+                window.location.replace("https://warriorplus.com/o2/a/g7r106k/0");
+            }
+        }, 1000);
+        
+        // Backup: Wenn gar nichts geht
+        setTimeout(function() {
+            window.location.href = "https://warriorplus.com/o2/a/g7r106k/0";
+        }, 4000);
     </script>
-
-    <!-- Method 2: Meta refresh backup -->
-    <meta http-equiv="refresh" content="1;url=https://warriorplus.com/o2/a/g7r106k/0">
-
-    <!-- Method 3: Fallback for very old browsers -->
+    
+    <!-- Meta-Refresh als letztes Backup -->
     <noscript>
-        <meta http-equiv="refresh" content="2;url=https://warriorplus.com/o2/a/g7r106k/0">
+        <meta http-equiv="refresh" content="3;url=https://warriorplus.com/o2/a/g7r106k/0">
     </noscript>
 </body>
 </html>
