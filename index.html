@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
             background: #0b0d10;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
- flex-direction: column;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
@@ -155,6 +155,7 @@
             max-width: 600px;
             margin: 1.5rem auto 0 auto;
             transition: all 0.3s ease;
+            scroll-margin-top: 30px;  /* gives a little space when scrolling down */
         }
 
         .email-form {
@@ -175,7 +176,7 @@
             margin-bottom: 1.4rem;
         }
 
-        .email-form input[type="text"] {
+        .email-form input[type="email"] {   /* changed from text to email for better ux */
             width: 100%;
             background: #1e222d;
             border: 1px solid #3f485c;
@@ -188,7 +189,7 @@
             font-family: inherit;
         }
 
-        .email-form input[type="text"]:focus {
+        .email-form input[type="email"]:focus {
             border-color: #d4af37;
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
         }
@@ -265,14 +266,14 @@
         </div>
 
         <!-- hidden email form with sendsteed code (appears after click) -->
-        <div class="email-wrapper">
+        <!-- added id to enable smooth scroll target -->
+        <div class="email-wrapper" id="emailWrapper">
             <div class="email-form" id="emailForm">
+                <!-- NAMENSFELD WEG: only email field remains -->
                 <form method="post" action="https://www.sendsteed.com/subscribe/">
                     <div class="form-group">
-                        <input name="e123432" required type="text" placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <input name="n123432" required type="text" placeholder="Name">
+                        <!-- only email input, name field removed completely -->
+                        <input name="e123432" required type="email" placeholder="your@email.com">
                     </div>
                     <!-- hidden fields with your values -->
                     <input type="hidden" name="lllid" value="123432">
@@ -333,15 +334,24 @@
             document.getElementById('rotatorLine1').innerText = selected.line1;
             document.getElementById('rotatorLine2').innerText = selected.line2;
 
-            // ----- form show/hide logic -----
+            // ----- form show/hide + SMOOTH SCROLL -----
             const showBtn = document.getElementById('showFormBtn');
             const emailForm = document.getElementById('emailForm');
             const hideLink = document.getElementById('hideFormLink');
+            const emailWrapper = document.getElementById('emailWrapper'); // target for scroll
 
-            // show form when button clicked
+            // show form when button clicked, then scroll smoothly to it
             showBtn.addEventListener('click', function(e) {
                 e.preventDefault();   // prevent any ghost navigation
+
+                // first make form visible (if not already)
                 emailForm.classList.add('visible');
+
+                // smooth scroll to the email wrapper (which contains the form)
+                emailWrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',      // centers it nicely
+                });
             });
 
             // hide form when "close" clicked
@@ -350,7 +360,6 @@
                 emailForm.classList.remove('visible');
             });
 
-            // optional: if you click outside? we keep it simple
         })();
     </script>
 </body>
