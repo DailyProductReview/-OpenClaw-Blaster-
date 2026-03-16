@@ -1,68 +1,357 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Redirecting to OpenClaw Blaster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 secret rotation · cash breach</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
+            background: #0b0d10;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+ flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #e2e8f0;
+        }
+
+        /* dark premium background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a1f2b, #0a0c12 80%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wMjUiIC8+PC9zdmc+');
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ROTATOR CARD – shows one random ad */
+        .rotator-card {
+            background: rgba(18, 22, 30, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 48px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 30px 50px -20px black, 0 0 0 1px rgba(212, 175, 55, 0.2) inset;
             text-align: center;
-            padding: 50px 20px;
+            margin-bottom: 2rem;
         }
-        .countdown {
-            font-size: 48px;
-            font-weight: bold;
-            color: #ff9900;
-            margin: 20px;
+
+        .rotator-headline {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(145deg, #f5e9b2, #e5c97a, #cfb056);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
-        .button {
+
+        .rotator-line {
+            font-size: 1.8rem;
+            line-height: 1.4;
+            font-weight: 400;
+            color: #cbd5e0;
+            border-left: 4px solid #d4af37;
+            padding-left: 1.2rem;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .rotator-line:last-of-type {
+            margin-bottom: 2rem;
+        }
+
+        /* shimmer button (same as before) */
+        .shimmer-btn {
             display: inline-block;
-            background-color: #ff9900;
-            color: black;
-            font-size: 24px;
-            padding: 15px 30px;
-            border-radius: 8px;
+            width: 100%;
+            background: linear-gradient(135deg, #2b2f3a, #1e212a);
+            color: #fae7a3;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 1.4rem 0;
+            border-radius: 80px;
+            text-align: center;
             text-decoration: none;
-            margin: 20px 0;
+            border: none;
+            box-shadow: 0 10px 0 #0f0f12, 0 15px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.08s linear;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .shimmer-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 248, 200, 0.5), rgba(255, 240, 160, 0.8), rgba(255, 248, 200, 0.5), transparent);
+            transform: skewX(-25deg);
+            transition: left 0.6s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .shimmer-btn:hover {
+            background: linear-gradient(135deg, #353b4a, #262b37);
+            color: #fff2b5;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #0f0f12, 0 20px 35px black;
+        }
+
+        .shimmer-btn:hover::before {
+            left: 100%;
+        }
+
+        .shimmer-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #0f0f12, 0 15px 30px black;
+        }
+
+        .shimmer-btn span {
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 0 12px #f3d350;
+        }
+
+        /* hidden email form – appears when button clicked */
+        .email-wrapper {
+            max-width: 600px;
+            margin: 1.5rem auto 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .email-form {
+            background: rgba(10, 12, 18, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid #d4af37;
+            border-radius: 60px;
+            padding: 2rem 2rem 1.8rem 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(212,175,55,0.2);
+            display: none;  /* hidden by default */
+        }
+
+        .email-form.visible {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .email-form input[type="text"] {
+            width: 100%;
+            background: #1e222d;
+            border: 1px solid #3f485c;
+            border-radius: 60px;
+            padding: 1.2rem 1.8rem;
+            font-size: 1.2rem;
+            color: #f0e9d0;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+
+        .email-form input[type="text"]:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+        }
+
+        .email-form button {
+            width: 100%;
+            background: linear-gradient(145deg, #d4af37, #b68a2c);
+            border: none;
+            border-radius: 60px;
+            padding: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #0a0c12;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #6b4f1a, 0 10px 20px black;
+            transition: 0.07s linear;
+            margin-top: 0.5rem;
+            border: 1px solid #efd57c;
+        }
+
+        .email-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #6b4f1a, 0 15px 25px black;
+            background: linear-gradient(145deg, #e6c257, #c79f38);
+        }
+
+        .email-form button:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #6b4f1a, 0 10px 20px black;
+        }
+
+        ::placeholder {
+            color: #6f7a8f;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .close-link {
+            text-align: right;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .close-link a {
+            color: #8f9bb3;
+            text-decoration: none;
+            border-bottom: 1px dashed #4a5568;
+            cursor: pointer;
+        }
+
+        .close-link a:hover {
+            color: #d4af37;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            color: #4a5568;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
-    <h1>⏳ Redirecting to OpenClaw Blaster...</h1>
-    <div class="countdown" id="countdown">3</div>
-    <p>You will be redirected automatically.</p>
-    
-    <a href="https://warriorplus.com/o2/a/g7r106k/0" class="button">
-        🔓 CLICK HERE NOW
-    </a>
+    <div class="container">
+        <!-- rotator card - dynamic content changes per page load -->
+        <div class="rotator-card" id="rotatorCard">
+            <div class="rotator-headline" id="rotatorTitle"></div>
+            <div class="rotator-line" id="rotatorLine1"></div>
+            <div class="rotator-line" id="rotatorLine2"></div>
+
+            <!-- big shimmer button that reveals email form -->
+            <button class="shimmer-btn" id="showFormBtn"><span>🔥 UNLOCK NOW 🔥</span></button>
+        </div>
+
+        <!-- hidden email form with sendsteed code (appears after click) -->
+        <div class="email-wrapper">
+            <div class="email-form" id="emailForm">
+                <form method="post" action="https://www.sendsteed.com/subscribe/">
+                    <div class="form-group">
+                        <input name="e123432" required type="text" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <input name="n123432" required type="text" placeholder="Name">
+                    </div>
+                    <!-- hidden fields with your values -->
+                    <input type="hidden" name="lllid" value="123432">
+                    <input type="hidden" name="lluid" value="sandyarta">
+                    <input type="hidden" name="redirect" value="">
+                    <!-- source = landingmix exactly as requested -->
+                    <input type="hidden" name="source" value="landingmix">
+                    <button type="submit">SUBMIT</button>
+                </form>
+                <div class="close-link">
+                    <a id="hideFormLink">✕ close</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            ⚠️ dark psychology · rotator · source=landingmix
+        </div>
+    </div>
 
     <script>
-        // Sanfter Countdown + Redirect (Chrome-freundlich)
-        var seconds = 3;
-        var countdownEl = document.getElementById('countdown');
-        
-        var interval = setInterval(function() {
-            seconds--;
-            countdownEl.textContent = seconds;
-            
-            if (seconds <= 0) {
-                clearInterval(interval);
-                // Diese Methode akzeptiert Chrome besser
-                window.location.replace("https://warriorplus.com/o2/a/g7r106k/0");
-            }
-        }, 1000);
-        
-        // Backup: Wenn gar nichts geht
-        setTimeout(function() {
-            window.location.href = "https://warriorplus.com/o2/a/g7r106k/0";
-        }, 4000);
+        (function() {
+            // ----- ALL 5 ADS (exactly as before, no "line1" labels) -----
+            const ads = [
+                {
+                    title: "Secret Money Method 2.0",
+                    line1: "Forget 9-5. This glitch prints",
+                    line2: "cash while you sleep. Rich or cry?"
+                },
+                {
+                    title: "They Don't Want You Rich",
+                    line1: "Your boss HATES this link.",
+                    line2: "Stop being poor. Click for proof."
+                },
+                {
+                    title: "Invite: Rich People Only",
+                    line1: "This is not for the poor.",
+                    line2: "Steal the wealth formula now."
+                },
+                {
+                    title: "Lazy? Good. Get Paid.",
+                    line1: "The lazier you are, the more",
+                    line2: "you earn. Copy & paste riches."
+                },
+                {
+                    title: "Capitalism is Broken.",
+                    line1: "Exploit the system back.",
+                    line2: "Take what’s yours. Start here."
+                }
+            ];
+
+            // pick random ad on every page load
+            const randomIndex = Math.floor(Math.random() * ads.length);
+            const selected = ads[randomIndex];
+
+            // update DOM
+            document.getElementById('rotatorTitle').innerText = selected.title;
+            document.getElementById('rotatorLine1').innerText = selected.line1;
+            document.getElementById('rotatorLine2').innerText = selected.line2;
+
+            // ----- form show/hide logic -----
+            const showBtn = document.getElementById('showFormBtn');
+            const emailForm = document.getElementById('emailForm');
+            const hideLink = document.getElementById('hideFormLink');
+
+            // show form when button clicked
+            showBtn.addEventListener('click', function(e) {
+                e.preventDefault();   // prevent any ghost navigation
+                emailForm.classList.add('visible');
+            });
+
+            // hide form when "close" clicked
+            hideLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                emailForm.classList.remove('visible');
+            });
+
+            // optional: if you click outside? we keep it simple
+        })();
     </script>
-    
-    <!-- Meta-Refresh als letztes Backup -->
-    <noscript>
-        <meta http-equiv="refresh" content="3;url=https://warriorplus.com/o2/a/g7r106k/0">
-    </noscript>
 </body>
 </html>
